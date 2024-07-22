@@ -1,104 +1,46 @@
+import { useEffect, useState } from 'react'
 import ProductList from '../../components/ProductList'
-import Game from '../../models/Game'
 
-import resident from '../../assets/images/resident.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import star from '../../assets/images/star_wars.png'
+import { Game } from '../Home'
 
-const promocoes: Game[] = [
-  {
-    id: 1,
-    title: 'Resident Evil 4 - Remake',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    category: 'Ação',
-    system: 'Windows',
-    infos: ['R$ 199,90', '-10%'],
-    image: resident
-  },
-  {
-    id: 2,
-    title: 'Resident Evil 4 - Remake',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    category: 'Ação',
-    system: 'Windows',
-    infos: ['R$ 199,90', '-10%'],
-    image: resident
-  },
-  {
-    id: 3,
-    title: 'Resident Evil 4 - Remake',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    category: 'Ação',
-    system: 'Windows',
-    infos: ['R$ 199,90', '-10%'],
-    image: resident
-  },
-  {
-    id: 4,
-    title: 'Resident Evil 4 - Remake',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    category: 'Ação',
-    system: 'Windows',
-    infos: ['R$ 199,90', '-10%'],
-    image: resident
-  }
-]
+const Categories = () => {
+  const [gamesAcao, setGamesAcao] = useState<Game[]>([])
+  const [gamesEsportes, setGamesEsportes] = useState<Game[]>([])
+  const [gamesSimulacao, setGamesSimulacao] = useState<Game[]>([])
+  const [gamesLuta, setGamesLuta] = useState<Game[]>([])
+  const [gamesRpg, setGamesRpg] = useState<Game[]>([])
 
-const emBreve: Game[] = [
-  {
-    id: 5,
-    category: 'RPG',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    image: diablo,
-    infos: ['05/04'],
-    system: 'Windows',
-    title: 'Diablo 4'
-  },
-  {
-    id: 6,
-    category: 'Aventura',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    image: star,
-    infos: ['05/04'],
-    system: 'Windows',
-    title: 'Star Wars Jedi Survivor'
-  },
-  {
-    id: 7,
-    category: 'RPG',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    image: zelda,
-    infos: ['05/04'],
-    system: 'Windows',
-    title: 'The Legend of Zelda - TOK'
-  },
-  {
-    id: 8,
-    category: 'Aventura',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    image: star,
-    infos: ['05/04'],
-    system: 'Windows',
-    title: 'Star Wars Jedi Survivor'
-  }
-]
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/acao')
+      .then((res) => res.json())
+      .then((res) => setGamesAcao(res))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/esportes')
+      .then((res) => res.json())
+      .then((res) => setGamesEsportes(res))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/simulacao')
+      .then((res) => res.json())
+      .then((res) => setGamesSimulacao(res))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/luta')
+      .then((res) => res.json())
+      .then((res) => setGamesLuta(res))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/rpg')
+      .then((res) => res.json())
+      .then((res) => setGamesRpg(res))
+  }, [])
 
-const Categories = () => (
-  <>
-    <ProductList games={promocoes} title="RPG" background="gray" />
-    <ProductList games={emBreve} title="Ação" background="black" />
-    <ProductList games={promocoes} title="Aventura" background="gray" />
-    <ProductList games={emBreve} title="FPS" background="black" />
-  </>
-)
+  return (
+    <>
+      <ProductList games={gamesAcao} title="Ação" background="black" />
+      <ProductList games={gamesEsportes} title="Esportes" background="gray" />
+      <ProductList
+        games={gamesSimulacao}
+        title="Simulação"
+        background="black"
+      />
+      <ProductList games={gamesLuta} title="Luta" background="gray" />
+      <ProductList games={gamesRpg} title="RPG" background="black" />
+    </>
+  )
+}
 
 export default Categories
