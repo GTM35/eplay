@@ -3,7 +3,6 @@ import Hero from '../../components/Hero'
 import Section from '../../components/Section'
 
 import Galeria from '../../components/Galeria'
-import resident from '../../assets/images/resident.png'
 import { useEffect, useState } from 'react'
 import { Game } from '../Home'
 
