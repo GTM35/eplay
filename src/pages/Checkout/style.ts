@@ -38,6 +38,7 @@ export const InputGroup = styled.div<InputGroupProps>`
     padding: 0 8px;
     border: 1px solid ${cores.branca};
     width: 100%;
+    color: #000;
   }
 
   select {
