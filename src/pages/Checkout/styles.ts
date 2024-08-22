@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 type InputGroupProps = {
   maxWidth?: string
@@ -33,30 +33,31 @@ export const InputGroup = styled.div<InputGroupProps>`
 
   input,
   select {
-    background-color: ${cores.branca};
+    background-color: ${colors.white};
     height: 32px;
     padding: 0 8px;
-    border: 1px solid ${cores.branca};
+    border: 1px solid ${colors.white};
     width: 100%;
     color: #000;
   }
 
   select {
-    color: ${cores.preta};
+    color: ${colors.black};
     cursor: pointer;
 
     option {
-      color: ${cores.preta};
+      color: ${colors.black};
     }
   }
 `
 
 export const TabButton = styled.button<TabButtonProps>`
-  background-color: ${(props) => (props.isActive ? cores.verde : cores.preta)};
+  background-color: ${(props) =>
+    props.isActive ? colors.green : colors.black};
   border-radius: 8px;
   font-size: 14px;
   font-weight: bold;
-  color: ${cores.branca};
+  color: ${colors.white};
   height: 32px;
   border: none;
   margin-right: 16px;
