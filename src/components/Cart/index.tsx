@@ -1,4 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import Button from '../Button'
+import Tag from '../Tag'
+
+import { formataPreco } from '../ProductList'
+import { RootReducer } from '../../store'
+import { close, remove } from '../../store/reducers/cart'
+
 import {
   CartContainer,
   CartItem,
@@ -7,12 +15,6 @@ import {
   Quantity,
   Sidebar
 } from './style'
-import star from '../../assets/images/star_wars.png'
-import Tag from '../Tag'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
-import { formataPreco } from '../ProductList'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -25,6 +27,7 @@ const Cart = () => {
 
   const getTotalPrice = () => {
     return items.reduce((ac, at) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return (ac += at.prices.current!)
     }, 0)
   }

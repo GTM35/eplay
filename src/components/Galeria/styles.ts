@@ -38,7 +38,7 @@ export const Item = styled.li`
     ${Action} {
       opacity: 1;
       transition: opacity 0.5s ease;
-      cursor: pointer;
+      cursor: zoom-in;
     }
   }
 `

@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import Section from '../Section'
 import { GalleryItem } from '../../pages/Home'
-import { Action, Item, Items, Modal, ModalContent } from './styles'
 
+import { Action, Item, Items, Modal, ModalContent } from './styles'
 import play from '../../assets/images/play.png'
 import zoom from '../../assets/images/zoom.png'
 import fechar from '../../assets/images/fechar.png'

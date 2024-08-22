@@ -1,4 +1,10 @@
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { HashLink } from 'react-router-hash-link'
+
 import { Link } from 'react-router-dom'
+import { open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
 
 import {
   HeaderBar,
@@ -9,13 +15,8 @@ import {
   HeaderRow,
   NavMobile
 } from './styles'
-
 import logo from '../../assets/images/logo.svg'
 import carrinho from '../../assets/images/carrinho.svg'
-import { open } from '../../store/reducers/cart'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-import { useState } from 'react'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -36,19 +37,34 @@ const Header = () => {
             <span />
             <span />
           </Hamburguer>
-          <Link to="/">
+          <Link onClick={() => setIsMenuOpen(false)} to="/">
             <img src={logo} alt="EPLAY" />
           </Link>
           <nav>
             <Links>
               <LinkItem>
-                <Link to={'/categories'}>Categorias</Link>
+                <Link
+                  title="Clique aqui para acessar a página de categories"
+                  to={'/categories'}
+                >
+                  Categorias
+                </Link>
               </LinkItem>
               <LinkItem>
-                <a href="#">Novidades</a>
+                <HashLink
+                  title="Clique aqui para acessar a sessão de Novidades"
+                  to="/#coming-soon"
+                >
+                  Em breve
+                </HashLink>
               </LinkItem>
               <LinkItem>
-                <a href="#">Promoções</a>
+                <HashLink
+                  title="Clique aqui para acessar a sessão de Promoções"
+                  to="/#on-sale"
+                >
+                  Promoções
+                </HashLink>
               </LinkItem>
             </Links>
           </nav>
@@ -65,13 +81,31 @@ const Header = () => {
       <NavMobile className={isMenuOpen ? 'is-open' : ''}>
         <Links>
           <LinkItem>
-            <Link to={'/categories'}>Categorias</Link>
+            <Link
+              title="Clique aqui para acessar a página de categories"
+              to={'/categories'}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Categorias
+            </Link>
           </LinkItem>
           <LinkItem>
-            <a href="#">Novidades</a>
+            <HashLink
+              title="Clique aqui para acessar a sessão de Novidades"
+              to="/#coming-soon"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Em breve
+            </HashLink>
           </LinkItem>
           <LinkItem>
-            <a href="#">Promoções</a>
+            <HashLink
+              title="Clique aqui para acessar a sessão de Promoções"
+              to="/#on-sale"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Promoções
+            </HashLink>
           </LinkItem>
         </Links>
       </NavMobile>
